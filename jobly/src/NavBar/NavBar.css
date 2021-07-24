@@ -1,0 +1,15 @@
+.NavBar-nav{
+    background-color: rgb(233, 222, 233);
+    height: auto;
+    padding: 1em 15%;
+
+}
+
+.NavBar-nav :first-child{
+    background-color: rgb(245, 225, 245);
+    margin: 0 2%;
+}
+
+.NavBar-routes {
+    margin-right: 0;
+}
