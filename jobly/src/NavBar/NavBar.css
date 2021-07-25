@@ -5,11 +5,14 @@
 
 }
 
-.NavBar-nav :first-child{
+.NavBar-nav > a{
     background-color: rgb(245, 225, 245);
-    margin: 0 2%;
+    margin-left: 2%;
+    margin: 0 2%
 }
 
-.NavBar-routes {
-    margin-right: 0;
+/* Picks the links that is not first child of Nav. */
+.NavBar-routes *:not(:first-child) {
+    background-color: rgb(245, 225, 245);
+    margin: 0 2%
 }

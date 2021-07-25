@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter, Route, NavLink } from 'react-router-dom'
-import Home from './Home'
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import Companies from './Companies';
 import Jobs from './Jobs';
 import Profile from './Profile';
-import Auth from './Auth';
+import Auth from './Auth/Auth';
 import NavBar from './NavBar/NavBar';
+import Home from './Home/Home'
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/profile">
           <Profile/>          
         </Route>
-        <Route exact path="/auth">
+        <Route exact path="/login">
           <Auth/>          
         </Route>
 

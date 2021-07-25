@@ -1,0 +1,41 @@
+.Auth-container{
+    background-color: rgb(184, 219, 233);
+    padding: 0 15%;
+    display:flex;
+    margin-top: 10%;
+}
+
+.signup{
+    flex:1;
+    padding: 1rem;
+    border-left: slateblue 5px double;
+}
+
+.login{
+    flex:1;
+    padding: 1rem;
+    border-right: slateblue 5px double;
+}
+
+.login input {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/* Maake label float up when input is focused. Ref :https://codepen.io/joyce-w/pen/JjNMNBK */
+/* .login label {
+    position: absolute;
+    transform: translateY(0%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+} */
+
+.login input:focus ~ label{
+    animation-name: slideup;
+}
+
+@keyframes slideup {
+    background-color: blue;
+}

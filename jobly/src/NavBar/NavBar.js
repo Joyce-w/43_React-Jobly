@@ -7,9 +7,9 @@ const NavBar = () => {
         <nav className="NavBar-nav">
             <NavLink to="/">Home</NavLink>
             <span className="NavBar-routes">
-                <NavLink to="/">Companies</NavLink>
-                <NavLink to="/">Jobs</NavLink>
-                <NavLink to="/">Profile</NavLink>                
+                <NavLink to="/companies">Companies</NavLink>
+                <NavLink to="/jobs">Jobs</NavLink>
+                <NavLink to="/profile">Profile</NavLink>                
             </span>
 
         </nav>
