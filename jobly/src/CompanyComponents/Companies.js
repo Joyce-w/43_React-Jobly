@@ -1,9 +1,10 @@
 import React from 'react'
 import './Companies.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const Companies = () => {
+
 
     return (
         <>

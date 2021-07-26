@@ -1,31 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Company.css'
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
+import JoblyApi from '../api'
 
 const Companies = () => {
 
+    const { handle } = useParams();
+    
+    const [company, setCompany] = useState(null);
+
+    useEffect(() => {
+        const getCompany = async (coHandle) => {
+            try {
+                let company = await JoblyApi.getCompany(coHandle);
+                setCompany(company)
+                console.log(company)
+            }
+            catch(e) {
+                console.log(e)
+            }
+        }
+        getCompany(handle)
+    },[handle])
+
+    //load appropriate logo
+    // let logo = company.logo === null ? "https://tppwebsolutions.com/wp-content/uploads/logo-demo3.png" : company.logo;
+
+    // Loads company data according to handle
+    let companyData = company ?
+        <div className="Companies-info">
+            <img className="Companies-logo" alt="" src="https://tppwebsolutions.com/wp-content/uploads/logo-demo3.png"></img>
+            <div>
+                <h4>{company.name}</h4>
+                <p>{company.description}</p>
+                <p>{company.numEmployees} employees</p>
+            </div>
+        </div>
+        : <p>Loading...</p>
+
     return (
         <div className="Company-div">
-            <div className="Companies-info">
-                <img className="Companies-logo" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdO8EX13N3nvGDMMRaApmJnHwkNtvSl33S2lE4D3x5CcWBN13SmUzua0ZHhSj7ne-wncw&usqp=CAU"></img>
-                <div>
-                <h4>Company Name</h4>
-                <p>Company Description</p>
-                <p>123,212,123 employees</p>
-                </div>
-            </div>
             
-
-                <div className="Company-jobs-cards">
-                    <h4>Recently posted jobs</h4>
+        {companyData}
+            
+        <div className="Company-jobs-cards">
+            <h4>Recently posted jobs</h4>
             <Link to="/jobs/:id">                    
                     <div className="Company-job">
                         <h4>Job title</h4>
                     </div>
             </Link>
-                </div>
-
+        </div>
 
         </div>
     )
