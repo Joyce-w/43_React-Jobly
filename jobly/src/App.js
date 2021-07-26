@@ -5,6 +5,7 @@ import Companies from './Companies';
 import Jobs from './Jobs';
 import Profile from './Profile';
 import Auth from './Auth/Auth';
+import Signup from './Auth/Signup'
 import NavBar from './NavBar/NavBar';
 import Home from './Home/Home'
 
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route exact path="/login">
           <Auth/>          
+        </Route>
+        <Route exact path="/register">
+          <Signup/>          
         </Route>
 
       </BrowserRouter>

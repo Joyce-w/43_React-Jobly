@@ -4,17 +4,16 @@
     display:flex;
     margin-top: 10%;
 }
-
-.signup{
+/* for potential right side signup form */
+/* .signup{
     flex:1;
     padding: 1rem;
     border-left: slateblue 5px double;
-}
+} */
 
 .login{
     flex:1;
     padding: 1rem;
-    border-right: slateblue 5px double;
 }
 
 .login input {

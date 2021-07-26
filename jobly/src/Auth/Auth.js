@@ -11,22 +11,9 @@ const Auth = () => {
                 <input placeholder = 'Username' type='text'></input>
 
                 <label>Password</label>
-                <input placeholder = 'Password'type='password '></input>
+                <input placeholder='Password' type='password '></input>
+                <button>Signup</button>
             </form>
-            {/* signup */}
-            <form className='signup'>
-                <h3>Signup</h3>
-                <label>First Name</label>
-                <input type='text'></input>
-                <label>Last Name</label>
-                <input type='text'></input>
-                <label>Username</label>
-                <input type='text'></input>
-                <label>Email</label>
-                <input type='email'></input>
-                <label>Password</label>
-                <input type='password '></input>
-            </form>            
         </div>
 
     )
