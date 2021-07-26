@@ -1,0 +1,9 @@
+.Jobs-div{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+.Job-card{
+    border: 1px solid black;
+    width: fit-content;
+}

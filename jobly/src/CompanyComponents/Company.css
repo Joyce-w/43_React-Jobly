@@ -1,0 +1,18 @@
+.Company-div{
+    margin: 1em 15%;
+    width: 70vw;
+    border: 1px black solid;
+    border-radius: 10px;
+
+}
+
+.Company-jobs-cards{
+    border-top: 1px black solid;
+    text-align: center;
+}
+
+.Company-job{
+    border: 1px solid black;
+    width: fit-content;
+    margin: auto;
+}
