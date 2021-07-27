@@ -17,18 +17,30 @@ function App() {
 
   //login function
   const [login, setLogin] = useState(null);
+  const [token, setToken] = useState(null)
+  
+  //pass function down to get login data from /login
+  const loginUser = (login) => {
+    setLogin(login)
+  }
 
+  //login user, returning token 
   useEffect(() => {
-    const  loginUser = async (un, pw) => {
-      //api to login
-      let token = await JoblyApi.userLogin(un, pw)
-      setLogin(token)
-      //setlogin
+    const loginUser = async (formData) => {
+      try {
+        //api to login
+        let token = await JoblyApi.userLogin(formData)
+        //setlogin
+        setToken(token)
+        console.log(token)           
+      } catch (e) {
+        console.log(e)
+      }
+  
     }
+    loginUser(login)
 
-    loginUser('joyce', 'password')
-
-  },[])
+  },[login])
 
   return (
     <div className="App">
@@ -56,7 +68,7 @@ function App() {
           <Profile/>          
         </Route>
         <Route exact path="/login">
-          <Auth/>          
+          <Auth loginUser={loginUser}/>
         </Route>
         <Route exact path="/register">
           <Signup/>          
