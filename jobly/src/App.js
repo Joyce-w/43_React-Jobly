@@ -26,6 +26,7 @@ function App() {
   //pass function down to get login data from /login
   const loginUser = (login) => {
     setLogin(login)
+    console.log(login)
   }
 
   //login user, returning token 
@@ -33,9 +34,11 @@ function App() {
     const loginUser = async (formData) => {
       try {
         //api to login
-        let token = await JoblyApi.userLogin(formData)
+        let jwt = await JoblyApi.userLogin(formData)
         //setlogin
-        setToken(token)       
+        setToken(jwt)
+        JoblyApi.token = jwt;
+        console.log(JoblyApi.token)
       } catch (e) {
         console.log(e)
       }
@@ -55,6 +58,7 @@ function App() {
     const appliedToJob = async (un, jobID) => {
       try {
           //apply to job
+        console.log(JoblyApi.token)
           let job = await JoblyApi.appliedJob(un, jobID)
           console.log(job)        
         } catch (e) {

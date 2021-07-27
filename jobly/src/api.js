@@ -36,17 +36,15 @@ class JoblyApi {
 
   // Individual API routes
   /**Login users */
-  static async userLogin() {
-
-    let res = await this.request(`auth/token/`, "post")
-
-
-    return res;
+  static async userLogin(formData) {
+    console.log(formData)
+    let res = await this.request(`auth/token/`,formData, "post")
+    return res.token;
   }
 
   /**Apply user to job */
   static async appliedJob(username, id) {
-    let res = await this.request(`users/${username}/jobs/${id}`, {username, id}, "post");
+    let res = await this.request(`users/${username}/jobs/${id}`, {}, "post");
     console.log(res)
 
     return res;
