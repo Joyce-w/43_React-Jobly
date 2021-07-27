@@ -14,9 +14,18 @@
     flex-wrap: wrap;
 }
 
+.Company-jobs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
 .Company-job{
     border: 1px solid black;
-    width: fit-content;
     margin: 0.5em;
+    padding: 0.5em;
+    width: 400px;
+    display: inline-block;
 }
 

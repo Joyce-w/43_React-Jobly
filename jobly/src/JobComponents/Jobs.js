@@ -24,8 +24,9 @@ const Jobs = () => {
     
     return (
         <>
+            <h2>Available Jobs</h2>
+
             {!jobs ? <p>Loading data</p> :
-                
                 <div className="Jobs-div">                
                 {jobs.map(job => {
                     return  <Link to={`/jobs/${job.id}`}>
@@ -38,11 +39,6 @@ const Jobs = () => {
                     
                 </div>           
             }
-
-            
-           
-
-
         </>
     )
 }

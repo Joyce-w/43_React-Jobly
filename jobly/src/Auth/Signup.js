@@ -3,21 +3,16 @@ import './Signup.css'
 
 const Signup = () => {
     return (
-        <div className='Auth-container'>
+        <div className='Signup-container'>
             {/* signup */}
             <form className='signup'>
-                <h3>Signup</h3>
-                <label>First Name</label>
-                <input type='text'></input>
-                <label>Last Name</label>
-                <input type='text'></input>
-                <label>Username</label>
-                <input type='text'></input>
-                <label>Email</label>
-                <input type='email'></input>
-                <label>Password</label>
-                <input type='password '></input>
-                <button>Signup</button>
+                <h3>Make the most of your professional life.</h3>
+                <input placeholder="First Name" type='text'></input>
+                <input placeholder="Last Name"type='text'></input>
+                <input placeholder="Username" type='text'></input>
+                <input placeholder="Email"type='email'></input>
+                <input placeholder="Password" type='password '></input>
+                <button className="Auth-button">Signup</button>
             </form>            
         </div>
 

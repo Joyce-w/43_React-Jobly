@@ -15,7 +15,6 @@ const Companies = () => {
             try {
                 let company = await JoblyApi.getCompany(coHandle);
                 let jobs = await JoblyApi.getJobs();
-                console.log(jobs)
                 let coJobs = jobs.filter(job => {
                     return job.companyHandle === handle;
                 })
@@ -44,26 +43,32 @@ const Companies = () => {
         </div>
         : <p>Loading...</p>
 
+    
     return (
-        <div className="Company-div">
-            
-        {companyData}
-            <h4>Recently posted jobs</h4>
+        <>
         <div className="Company-jobs-cards">
-            
-                {/*map through jobs for the company and display them  */}
-                {/* create if statement in case company does not have any openings */}
-                {coJobs.map(j => {
-                return <Link to={`/jobs/${j.id}`}>                    
-                    <div className="Company-job">
-                        <h4>{j.title}</h4>
-                    </div>
-            </Link>
-            })}
-            
+        {/* Load data */}
+        {!coJobs ? <p>Loading data</p> :
+            <div className="Company-div">
+                {companyData}
+                        <hr></hr>
+                        
+                        <h4>Recently posted jobs</h4>
+                        
+                <div className="Company-jobs">
+                    {coJobs.map(j => {
+                        return <Link to={`/jobs/${j.id}`}>                    
+                                    <div className="Company-job">
+                                        <h4>{j.title}</h4>
+                                    </div>
+                                </Link>
+                    })}                                 
+                </div>
+           
+            </div>
+        } 
         </div>
-
-        </div>
+        </>
     )
 }
 

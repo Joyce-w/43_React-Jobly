@@ -27,11 +27,11 @@ const Companies = () => {
     return (
         <>
             
-            {/* loading */}
+            {/* loading */}<h2>Companies!</h2>
             {!companies ? <p>Loading</p> :
                 <div className="Companies-cards">
                     {/* // Map thru company list and use this format */}
-
+                    
                     {companies.map(co => {
                         return <Link to={`/companies/${co.handle}`}>
                             <div className="Companies-div">

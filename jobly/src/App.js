@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Companies from './CompanyComponents/Companies';
 import Company from './CompanyComponents/Company'
@@ -10,8 +11,25 @@ import Auth from './Auth/Auth';
 import Signup from './Auth/Signup'
 import NavBar from './NavBar/NavBar';
 import Home from './Home/Home'
+import JoblyApi from './api';
 
 function App() {
+
+  //login function
+  const [login, setLogin] = useState(null);
+
+  useEffect(() => {
+    const  loginUser = async (un, pw) => {
+      //api to login
+      let token = await JoblyApi.userLogin(un, pw)
+      setLogin(token)
+      //setlogin
+    }
+
+    loginUser('joyce', 'password')
+
+  },[])
+
   return (
     <div className="App">
       <BrowserRouter>

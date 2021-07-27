@@ -1,8 +1,7 @@
-.Auth-container{
-    background-color: rgb(184, 219, 233);
-    padding: 0 15%;
-    display:flex;
-    margin-top: 10%;
+.Login-container{
+    display: flex;
+    margin-top: 5%;
+    justify-content: center;
 }
 /* for potential right side signup form */
 /* .signup{
@@ -12,14 +11,24 @@
 } */
 
 .login{
-    flex:1;
-    padding: 1rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 1em;
 }
 
 .login input {
-    border: none;
-    background: none;
-    outline: none;
+ border: solid 1px black;
+ height:1.2em;
+ background: none;
+ outline: none;
+ border-radius: 5px;
+ padding: .5em;
+ margin: 0.5em;
 }
 
 /* Maake label float up when input is focused. Ref :https://codepen.io/joyce-w/pen/JjNMNBK */
@@ -30,11 +39,12 @@
     pointer-events: none;
     transition: .5s;
 } */
-
-.login input:focus ~ label{
-    animation-name: slideup;
-}
-
-@keyframes slideup {
-    background-color: blue;
+.Login-button{
+    margin: 0.5em;
+    height:2em;
+    background: #0a66c2;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 17px;
 }

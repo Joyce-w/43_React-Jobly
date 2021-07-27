@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Link, useParams } from 'react-router-dom'
 import JoblyApi from '../api';
+import './Job.css'
 
 const Job = () => {
     //use context to share company data
@@ -26,12 +27,13 @@ const Job = () => {
     }, [id])
 
     return (
-        <div>
+        <div className="Job-div">
             {!job ? <p>loading</p> : 
             <div>
-                <h4>{job.title}</h4>
-                <p>{job.salary}</p>
-                <p>{job.equity}</p>
+                    <h4>{job.title}</h4>
+                    
+                <p>Salary: {job.salary}</p>
+                <p>Equity: {job.equity}</p>
                 <button>Apply</button>
             </div>        
             }            

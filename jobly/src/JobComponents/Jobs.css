@@ -9,7 +9,7 @@
 .Job-card{
     border: 1px solid black;
     padding: 0.5em;
-    width: fit-content;
+    width: 400px;
     margin: .5em;
     border-radius: 10px;
 }

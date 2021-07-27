@@ -1,5 +1,36 @@
+.Signup-container{
+    display: flex;
+    margin-top: 5%;
+    justify-content: center;
+}
+
+.signup{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 1em;
+}
+
 .signup input {
-    border: none;
+    border: solid 1px black;
+    height:1.2em;
     background: none;
     outline: none;
+    border-radius: 5px;
+    padding: .5em;
+    margin: 0.5em;
+}
+
+.Auth-button{
+    margin: 0.5em;
+    height:2em;
+    background: #0a66c2;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 17px;
 }

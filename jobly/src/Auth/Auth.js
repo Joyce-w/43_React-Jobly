@@ -3,16 +3,16 @@ import './Auth.css'
 const Auth = () => {
 
     return (
-        <div className='Auth-container'>
+        <div className='Login-container'>
             {/* login */}
             <form className='login'>
-                <h3>Login</h3>
+                <h3>Login to start view job opportunities!</h3>
                 <label>Username</label>
                 <input placeholder = 'Username' type='text'></input>
 
                 <label>Password</label>
                 <input placeholder='Password' type='password '></input>
-                <button>Signup</button>
+                <button className="Login-button">Login</button>
             </form>
         </div>
 

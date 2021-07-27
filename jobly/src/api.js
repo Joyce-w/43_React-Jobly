@@ -35,6 +35,15 @@ class JoblyApi {
   }
 
   // Individual API routes
+  /**Login users */
+  static async userLogin(un, pw) {
+    let data = {username: un, password: pw}
+    let res = await this.request(`auth/token/`, data, "post")
+    console.log(res)
+    return res;
+  }
+
+
 
   /**Get list of companies */
   static async getCompanies() {
