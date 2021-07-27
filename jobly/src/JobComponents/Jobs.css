@@ -1,9 +1,19 @@
 .Jobs-div{
     text-align: center;
+    margin: 0 10%;
     justify-content: center;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .Job-card{
     border: 1px solid black;
+    padding: 0.5em;
     width: fit-content;
+    margin: .5em;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
 }

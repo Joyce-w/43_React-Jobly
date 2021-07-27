@@ -9,10 +9,14 @@
 .Company-jobs-cards{
     border-top: 1px black solid;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .Company-job{
     border: 1px solid black;
     width: fit-content;
-    margin: auto;
+    margin: 0.5em;
 }
+

@@ -1,11 +1,21 @@
 
-
 .Companies-cards{
     justify-content: center;
     margin: 0 10%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
 }
+
+.Companies-cards img {
+    width: 90%;
+}
+
+.Companies-cards a {
+    text-decoration: none;
+}
+
 
 .Companies-div{
     border: 1px solid black;

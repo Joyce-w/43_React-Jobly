@@ -1,21 +1,48 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
-import './Jobs.css'
+import './Jobs.css';
+import JoblyApi from '../api';
 
 const Jobs = () => {
+
+    const [jobs, setJobs] = useState();
+
+    useEffect(() => {
+        const getJobs = async () => {
+            try {
+                let res = await JoblyApi.getJobs();
+                setJobs(res)
+                console.log(res)
+            }
+            catch(e) {
+                console.log(e)
+            }
+        }
+        //call function to get api
+        getJobs();
+    }, [])
+    
     return (
         <>
-        <h4>Recently posted jobs</h4>
-        <div className="Jobs-div">
-            
-            <Link to="/jobs/:id">
-                <div className="Job-card">
-                    <p>Company Img</p>
-                    <h4>Job Title</h4>
-                </div>            
-            </Link>
+            {!jobs ? <p>Loading data</p> :
+                
+                <div className="Jobs-div">                
+                {jobs.map(job => {
+                    return  <Link to={`/jobs/${job.id}`}>
+                                <div className="Job-card">
+                                <h3>{ job.companyName}</h3>
+                                <h4>{job.title}</h4>
+                                </div>            
+                            </Link>
+                })}
+                    
+                </div>           
+            }
 
-        </div>
+            
+           
+
+
         </>
     )
 }

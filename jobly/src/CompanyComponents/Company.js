@@ -8,13 +8,19 @@ const Companies = () => {
     const { handle } = useParams();
     
     const [company, setCompany] = useState(null);
-
+    const [coJobs, setcoJobs] = useState(null)
+    
     useEffect(() => {
         const getCompany = async (coHandle) => {
             try {
                 let company = await JoblyApi.getCompany(coHandle);
+                let jobs = await JoblyApi.getJobs();
+                console.log(jobs)
+                let coJobs = jobs.filter(job => {
+                    return job.companyHandle === handle;
+                })
+                setcoJobs(coJobs)
                 setCompany(company)
-                console.log(company)
             }
             catch(e) {
                 console.log(e)
@@ -42,14 +48,19 @@ const Companies = () => {
         <div className="Company-div">
             
         {companyData}
-            
-        <div className="Company-jobs-cards">
             <h4>Recently posted jobs</h4>
-            <Link to="/jobs/:id">                    
+        <div className="Company-jobs-cards">
+            
+                {/*map through jobs for the company and display them  */}
+                {/* create if statement in case company does not have any openings */}
+                {coJobs.map(j => {
+                return <Link to={`/jobs/${j.id}`}>                    
                     <div className="Company-job">
-                        <h4>Job title</h4>
+                        <h4>{j.title}</h4>
                     </div>
             </Link>
+            })}
+            
         </div>
 
         </div>
