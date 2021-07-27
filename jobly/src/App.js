@@ -61,7 +61,7 @@ function App() {
           console.log(e)
         }
     }
-    appliedToJob(login.username, id)
+    appliedToJob('joyce', id)
   },[id])
 
 
