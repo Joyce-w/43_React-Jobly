@@ -12,7 +12,6 @@ const Jobs = () => {
             try {
                 let res = await JoblyApi.getJobs();
                 setJobs(res)
-                console.log(res)
             }
             catch(e) {
                 console.log(e)
@@ -31,8 +30,8 @@ const Jobs = () => {
                 {jobs.map(job => {
                     return  <Link to={`/jobs/${job.id}`}>
                                 <div className="Job-card">
-                                <h3>{ job.companyName}</h3>
-                                <h4>{job.title}</h4>
+                            <h4>{job.title}</h4>
+                            <h4>@{ job.companyName}</h4>
                                 </div>            
                             </Link>
                 })}

@@ -23,7 +23,6 @@ const Auth = ({loginUser}) => {
         e.preventDefault();
         loginUser(form);
         history.push('/')
-
     }
 
     return (

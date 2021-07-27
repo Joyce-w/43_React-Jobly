@@ -7,7 +7,6 @@
 }
 
 .Company-jobs-cards{
-    border-top: 1px black solid;
     text-align: center;
     display: flex;
     flex-direction: row;

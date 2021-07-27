@@ -18,6 +18,10 @@ function App() {
   //login function
   const [login, setLogin] = useState(null);
   const [token, setToken] = useState(null)
+
+  //job list
+  const [id, setID] = useState([]);
+  const [jobList, setJobList] = useState([])
   
   //pass function down to get login data from /login
   const loginUser = (login) => {
@@ -31,16 +35,35 @@ function App() {
         //api to login
         let token = await JoblyApi.userLogin(formData)
         //setlogin
-        setToken(token)
-        console.log(token)           
+        setToken(token)       
       } catch (e) {
         console.log(e)
       }
   
     }
     loginUser(login)
+  }, [login])
+  
+  //get job id from applied
+  const getjobID = (jobId) => {
+    setID(jobId)
+  }
+  
 
-  },[login])
+  //handle applied jobs if user is logged in
+  useEffect(() => {
+    const appliedToJob = async (un, jobID) => {
+      try {
+          //apply to job
+          let job = await JoblyApi.appliedJob(un, jobID)
+          console.log(job)        
+        } catch (e) {
+          console.log(e)
+        }
+    }
+    appliedToJob(login.username, id)
+  },[id])
+
 
   return (
     <div className="App">
@@ -61,7 +84,7 @@ function App() {
           <Jobs/>          
         </Route>
         <Route exact path="/jobs/:id">
-          <Job/>          
+          <Job getjobID={getjobID}/>
         </Route>
 
         <Route exact path="/profile">
