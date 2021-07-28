@@ -12,6 +12,7 @@ import Signup from './Auth/Signup'
 import NavBar from './NavBar/NavBar';
 import Home from './Home/Home'
 import JoblyApi from './api';
+import UserContext from './UserContext';
 
 function App() {
 
@@ -90,6 +91,8 @@ function App() {
 
 
   return (
+    <UserContext.Provider value={currUser}>
+
     <div className="App">
       <BrowserRouter>
         <NavBar/>
@@ -122,7 +125,9 @@ function App() {
         </Route>
 
       </BrowserRouter>
-    </div>
+      </div>
+      
+    </UserContext.Provider>
   );
 }
 

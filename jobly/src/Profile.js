@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import UserContext from './UserContext';
 
-const Profile = ({ currUser }) => {
+const Profile = () => {
     
+    const currUser = useContext(UserContext)
     console.log(currUser)
 
-    let test = !currUser ? <p>Loading User </p> :
+    
+    return (
+
         <div>
             <h4>It's your profile {currUser.username}!</h4>
             <p>username {currUser.username}</p>
@@ -13,11 +17,7 @@ const Profile = ({ currUser }) => {
             <p>password: {currUser.password}</p>
             <p>email : {currUser.email}</p>
             <p> Jobs Applied:{currUser.applications.map(j => <p>{ j}</p>)}</p>
-
-        </div>        
-    return (
-
-        {test}
+        </div>    
     )
 }
 
