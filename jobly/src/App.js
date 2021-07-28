@@ -47,7 +47,7 @@ function App() {
       setCurrUser(user)
     }
     getUserInfo();
-  },[token])
+  },[token, jobId])
 
 
   // useEffect(() => {
@@ -72,8 +72,10 @@ function App() {
 
 
   //get job id from applied
+  /***job id being passed is of previous one */
   const getjobID = (id) => {
     setjobID(id)
+    console.log(jobId)
   }
   
   //handle applied jobs if user is logged in
@@ -86,7 +88,7 @@ function App() {
           console.log(e)
         }
     }
-    appliedToJob('joyce', jobId)
+    appliedToJob(JSON.parse(localStorage.username), jobId)
   },[jobId])
 
 

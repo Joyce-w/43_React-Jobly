@@ -7,7 +7,6 @@ const Home = () => {
 
   const currUser = useContext(UserContext)
 
-  console.log(currUser)
   return (
     <>
       
@@ -22,14 +21,14 @@ const Home = () => {
             </Link>          
         </div> :
           <div className="Home-div">
-          <h1>Welcome {currUser.username}</h1>
-      <Link to="/companies">
-        <button>Explore Companies</button>
-      </Link>
-      <Link to="/jobs">
-        <button>Explore Jobs</button>
-      </Link>
-    </div>  
+            <h1>Welcome {currUser.username}</h1>
+            <Link to="/companies">
+              <button>Explore Companies</button>
+            </Link>
+            <Link to="/jobs">
+              <button>Explore Jobs</button>
+            </Link>
+          </div>  
       }
 
 
