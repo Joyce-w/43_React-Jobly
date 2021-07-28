@@ -14,19 +14,19 @@ const Home = () => {
         <div className="Home-div">
           <h1>Welcome to Jobly. The one stop for jobs and companies.</h1>  
           <Link to="/login">
-            <button>Login</button>
+            <button className="Home-login">Apply</button>
           </Link>
           <Link to="/register">
-            <button>Signup</button>
+            <button className="Home-signup">Signup</button>
             </Link>          
         </div> :
           <div className="Home-div">
             <h1>Welcome {currUser.username}</h1>
             <Link to="/companies">
-              <button>Explore Companies</button>
+              <button className="Home-companies">Explore Companies</button>
             </Link>
             <Link to="/jobs">
-              <button>Explore Jobs</button>
+              <button className="Home-jobs">Explore Jobs</button>
             </Link>
           </div>  
       }

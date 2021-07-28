@@ -1,4 +1,66 @@
 .Home-div{
   width: 80%;
-  margin:auto;
+  margin: 10% auto;
+  width: fit-content;
+  border: 1px solid rgb(236, 236, 236);
+  border-radius: 10px;
+  background: #fff;
+  padding: 2em;
+}
+
+.Home-div button {
+  padding: 10px 20px;
+  margin:0.5em;
+  border-radius: 30px;
+  font-size: large;
+  font-weight: 600;
+  border: 1px solid rgb(22, 102, 197)
+}
+
+/*Home page for when there is no user loggedin*/
+.Home-login {
+  background-color: rgb(22, 102, 197);
+  color: #fff;
+  font-family: Helvetica,Arial, sans-serif;
+  letter-spacing: 1px;
+}
+.Home-login:hover{
+background-color: rgb(15, 77, 153)
+}
+
+.Home-signup {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(22 102 197);
+  font-family: Helvetica,Arial, sans-serif;
+  letter-spacing: 1px;
+}
+.Home-signup:hover {
+  background-color: rgb(190, 213, 241);
+  border: 2px solid rgb(22 102 197);
+  padding: 8px 18px;
+}
+
+/*Home page for when a user is logged in*/
+.Home-companies {
+  background-color: rgb(22, 102, 197);
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.Home-companies:hover {
+  background-color: rgb(15, 77, 153)
+}
+
+.Home-jobs {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(22 102 197);
+  font-family: Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.Home-jobs:hover {
+  background-color: rgb(190, 213, 241);
+  border: 2px solid rgb(22 102 197);
+  padding: 8px 18px;
 }

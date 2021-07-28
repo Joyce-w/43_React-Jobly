@@ -42,9 +42,13 @@
 .Login-button{
     margin: 0.5em;
     height:2em;
-    background: #0a66c2;
+    background: rgb(22, 102, 197);
     border: none;
     color: white;
     font-size: 1.2rem;
-    border-radius: 17px;
+    border-radius: 30px;
+}
+
+.Login-button:hover{
+    background-color: rgb(15, 77, 153);
 }
