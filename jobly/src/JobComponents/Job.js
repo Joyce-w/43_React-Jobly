@@ -7,7 +7,7 @@ import './Job.css'
 const Job = ({ getjobID }) => {
     
     const currUser = useContext(UserContext)
-    let jobList = currUser.applications;
+    const [jobList, setjobList] = useState(currUser.applications);
     console.log(jobList)
     
     const [job, setJob] = useState();
@@ -29,6 +29,19 @@ const Job = ({ getjobID }) => {
         getJob();
     }, [id])
 
+    useEffect(() => {
+        const appliedToJob = async (un, jobID) => {
+        try {
+            //apply to job
+            let res = await JoblyApi.appliedJob(un, jobID)
+            setjobList(jobList => ([...jobList, +id ]))
+        } catch (e) {
+            console.log(e)
+            }
+        }
+        appliedToJob(JSON.parse(localStorage.username),id)
+    })
+
     /**Handle job submission when button clicked */
     const history = useHistory();
     //send jobID to parent App.js
@@ -38,6 +51,7 @@ const Job = ({ getjobID }) => {
         history.push('/jobs');
 
     }
+
     return (
         //load job from api
         <div className="Job-div">

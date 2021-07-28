@@ -78,19 +78,6 @@ function App() {
     console.log(jobId)
   }
   
-  //handle applied jobs if user is logged in
-  useEffect(() => {
-    const appliedToJob = async (un, jobID) => {
-      try {
-          //apply to job
-          await JoblyApi.appliedJob(un, jobID)
-        } catch (e) {
-          console.log(e)
-        }
-    }
-    appliedToJob(JSON.parse(localStorage.username), jobId)
-  },[jobId])
-
 
   return (
     <UserContext.Provider value={currUser}>
@@ -123,7 +110,7 @@ function App() {
           <Auth loginUser={loginUser}/>
         </Route>
         <Route exact path="/register">
-          <Signup/>          
+            <Signup loginUser={ loginUser }/>
         </Route>
 
       </BrowserRouter>
