@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import JoblyApi from '../api';
 import './Signup.css'
 
-const Signup = ({loginUser}) => {
+const Signup = () => {
 
     const initial_state = {
         firstName: '',
@@ -18,7 +18,6 @@ const Signup = ({loginUser}) => {
     //handle change on form submit 
     const handleChange = e => {
         const { name, value } = e.target;
-        console.log(name, value)
         setForm(form => ({
             ...form,
             [name]: value

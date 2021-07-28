@@ -40,7 +40,6 @@ function App() {
   useEffect(() => {
     const getUserInfo = async () => {
       let currUser = JSON.parse(localStorage.username);
-      console.log(currUser)
 
       //get user api
       let user = await JoblyApi.getUserInfo(currUser)
@@ -71,8 +70,7 @@ function App() {
   
 
 
-  //get job id from applied
-  /***job id being passed is of previous one */
+  //get job id from Job component when job is applied
   const getjobID = (id) => {
     setjobID(id)
     console.log(jobId)

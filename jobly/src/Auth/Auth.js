@@ -22,6 +22,7 @@ const Auth = ({loginUser}) => {
 
     //get data from api
     const getToken = async (data) => {
+        console.log(data)
         let res = await JoblyApi.userLogin(data)
         JoblyApi.token = res;
         return res;

@@ -8,11 +8,10 @@ const Job = ({ getjobID }) => {
     
     const currUser = useContext(UserContext)
     const [jobList, setjobList] = useState(currUser.applications);
-    console.log(jobList)
     
     const [job, setJob] = useState();
     const { id } = useParams();
-    let btnText = jobList.includes(id) ? console.log(id) : 'Applied'
+    console.log(id, jobList)
     
     //load job data according to id
     useEffect(() => {
@@ -29,24 +28,23 @@ const Job = ({ getjobID }) => {
         getJob();
     }, [id])
 
-    useEffect(() => {
-        const appliedToJob = async (un, jobID) => {
-        try {
-            //apply to job
-            let res = await JoblyApi.appliedJob(un, jobID)
-            setjobList(jobList => ([...jobList, +id ]))
-        } catch (e) {
-            console.log(e)
-            }
+
+    const appliedToJob = async (un, jobID) => {
+    try {
+        //apply to job
+        await JoblyApi.appliedJob(un, jobID)
+        setjobList(jobList => ([...jobList, +id ]))
+    } catch (e) {
+        console.log(e)
         }
-        appliedToJob(JSON.parse(localStorage.username),id)
-    })
+    }
 
     /**Handle job submission when button clicked */
     const history = useHistory();
     //send jobID to parent App.js
     const handleSubmit = (e) => {
         e.preventDefault();
+        appliedToJob(JSON.parse(localStorage.username),id)
         getjobID(id);
         history.push('/jobs');
 
@@ -61,7 +59,7 @@ const Job = ({ getjobID }) => {
                     
                 <p>Salary: {job.salary || 'Contact to inquire'}</p>
                 <p>Equity: {job.equity || 'None'}</p>
-                    <button onClick={ handleSubmit }>{btnText}</button>
+                    <button onClick={ handleSubmit }>Apply</button>
             </div>        
             }            
         </div>

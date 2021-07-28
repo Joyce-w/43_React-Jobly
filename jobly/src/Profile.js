@@ -16,7 +16,7 @@ const Profile = () => {
             <p>last name : {currUser.lastName}</p>
             <p>password: {currUser.password}</p>
             <p>email : {currUser.email}</p>
-            <p> Jobs Applied:{currUser.applications.map(j => <p>{ j}</p>)}</p>
+            <p> Jobs Applied:{currUser.applications ?currUser.applications.map(j => <p>{ j}</p>) : "You haven't applied to any jobs yet"}</p>
         </div>    
     )
 }
