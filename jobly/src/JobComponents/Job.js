@@ -16,7 +16,6 @@ const Job = ({getjobID}) => {
             try {
                 let res = await JoblyApi.getJob(id);
                 setJob(res)
-                console.log(res)
             }
             catch(e) {
                 console.log(e)
@@ -30,7 +29,6 @@ const Job = ({getjobID}) => {
     //send jobID to parent App.js
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(id)
         getjobID(id);
         history.push('/jobs');
 

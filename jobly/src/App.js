@@ -17,11 +17,9 @@ function App() {
 
   //login function
   const [login, setLogin] = useState(null);
-  const [token, setToken] = useState(null)
 
   //job list
-  const [id, setID] = useState([]);
-  const [jobList, setJobList] = useState([])
+  const [jobId, setjobID] = useState([]);
   
   //pass function down to get login data from /login
   const loginUser = (login) => {
@@ -29,6 +27,7 @@ function App() {
     console.log(login)
   }
 
+    const [currUser, setCurrUser] = useState(localStorage.jwt || null);
   //login user, returning token 
   useEffect(() => {
     const loginUser = async (formData) => {
@@ -36,9 +35,11 @@ function App() {
         //api to login
         let jwt = await JoblyApi.userLogin(formData)
         //setlogin
-        setToken(jwt)
         JoblyApi.token = jwt;
-        console.log(JoblyApi.token)
+        localStorage.setItem("jwt",JSON.stringify(jwt))
+        let user = await JoblyApi.getUserInfo(login.username)
+        setCurrUser(user)
+
       } catch (e) {
         console.log(e)
       }
@@ -47,26 +48,25 @@ function App() {
     loginUser(login)
   }, [login])
   
+
+
   //get job id from applied
-  const getjobID = (jobId) => {
-    setID(jobId)
+  const getjobID = (id) => {
+    setjobID(id)
   }
   
-
   //handle applied jobs if user is logged in
   useEffect(() => {
     const appliedToJob = async (un, jobID) => {
       try {
           //apply to job
-        console.log(JoblyApi.token)
-          let job = await JoblyApi.appliedJob(un, jobID)
-          console.log(job)        
+          await JoblyApi.appliedJob(un, jobID)
         } catch (e) {
           console.log(e)
         }
     }
-    appliedToJob('joyce', id)
-  },[id])
+    appliedToJob('joyce', jobId)
+  },[jobId])
 
 
   return (
@@ -92,7 +92,7 @@ function App() {
         </Route>
 
         <Route exact path="/profile">
-          <Profile/>          
+          <Profile currUser={ currUser }/>          
         </Route>
         <Route exact path="/login">
           <Auth loginUser={loginUser}/>

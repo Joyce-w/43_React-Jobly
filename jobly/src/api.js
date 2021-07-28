@@ -42,6 +42,12 @@ class JoblyApi {
     return res.token;
   }
 
+  /**Get user info if loggedin */
+  static async getUserInfo(user) {
+    let res = await this.request(`users/${user}/`);
+    return res.user
+  }
+
   /**Apply user to job */
   static async appliedJob(username, id) {
     let res = await this.request(`users/${username}/jobs/${id}`, {}, "post");
