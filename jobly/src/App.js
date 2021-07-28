@@ -19,34 +19,54 @@ function App() {
   const [login, setLogin] = useState(null);
 
   //job list
-  const [jobId, setjobID] = useState([]);
+  const [jobId, setjobID] = useState(null);
   
   //pass function down to get login data from /login
-  const loginUser = (login) => {
-    setLogin(login)
-    console.log(login)
-  }
+  // const loginUser = (login) => {
+  //   setLogin(login)
+  //   console.log(login)
+  // }
 
     const [currUser, setCurrUser] = useState(localStorage.jwt || null);
-  //login user, returning token 
-  useEffect(() => {
-    const loginUser = async (formData) => {
-      try {
-        //api to login
-        let jwt = await JoblyApi.userLogin(formData)
-        //setlogin
-        JoblyApi.token = jwt;
-        localStorage.setItem("jwt",JSON.stringify(jwt))
-        let user = await JoblyApi.getUserInfo(login.username)
-        setCurrUser(user)
+ 
 
-      } catch (e) {
-        console.log(e)
-      }
-  
+  //get token from Auth.js
+  const [token, setToken] = useState(null)
+  const loginUser = async (jwt) => {
+    setToken(await jwt);
     }
-    loginUser(login)
-  }, [login])
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      let currUser = JSON.parse(localStorage.username);
+      console.log(currUser)
+
+      //get user api
+      let user = await JoblyApi.getUserInfo(currUser)
+      setCurrUser(user)
+    }
+    getUserInfo();
+  },[token])
+
+
+  // useEffect(() => {
+  //   const loginUser = async (formData) => {
+  //     try {
+  //       console.log(formData)
+  //       //api to login
+  //       let jwt = await JoblyApi.userLogin(formData)
+  //       //setlogin
+  //       JoblyApi.token = jwt;
+  //       localStorage.setItem("jwt", JSON.stringify(jwt))
+        
+        
+  //     } catch (e) {
+  //       console.log(e)
+  //     }
+  
+  //   }
+  //   loginUser(login)
+  // }, [login])
   
 
 

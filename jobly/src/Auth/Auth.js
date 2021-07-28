@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import './Auth.css'
+import JoblyApi from '../api';
+
+
 const Auth = ({loginUser}) => {
     const initial_state = {
         username: '',
@@ -17,11 +20,21 @@ const Auth = ({loginUser}) => {
         }))
     }
 
+    //get data from api
+    const getToken = async (data) => {
+        let res = await JoblyApi.userLogin(data)
+        JoblyApi.token = res;
+        return res;
+    }
+
+    
     const history = useHistory();
     //handle submit
-    const handleSubmit=(e) => {
+    const handleSubmit= (e) => {
         e.preventDefault();
-        loginUser(form);
+        let token = getToken(form)
+        localStorage.setItem("username", JSON.stringify(form.username))
+        loginUser(token);
         history.push('/')
     }
 

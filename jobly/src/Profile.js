@@ -3,7 +3,8 @@ import React from 'react';
 const Profile = ({ currUser }) => {
     
     console.log(currUser)
-    return (
+
+    let test = !currUser ? <p>Loading User </p> :
         <div>
             <h4>It's your profile {currUser.username}!</h4>
             <p>username {currUser.username}</p>
@@ -13,8 +14,10 @@ const Profile = ({ currUser }) => {
             <p>email : {currUser.email}</p>
             <p> Jobs Applied:{currUser.applications.map(j => <p>{ j}</p>)}</p>
 
-        </div>
+        </div>        
+    return (
 
+        {test}
     )
 }
 
