@@ -1,12 +1,16 @@
 import React, {useContext} from 'react'
-import { Link} from 'react-router-dom'
+import { Link, Redirect} from 'react-router-dom'
 import './Home.css'
 import UserContext from '../UserContext';
 
 const Home = () => {
 
-  const { userData } = useContext(UserContext)
+  let { userData } = useContext(UserContext)
   console.log(userData)
+
+  //if there is a userData, parse from localstorage
+  let user = userData ? JSON.parse(userData) : userData;
+  console.log(user)
   return (
     <>
       
@@ -21,7 +25,7 @@ const Home = () => {
             </Link>          
         </div> :
           <div className="Home-div">
-            <h1>Welcome {userData.username}</h1>
+            <h1>Welcome {user.username}</h1>
             <Link to="/companies">
               <button className="Home-companies">Explore Companies</button>
             </Link>

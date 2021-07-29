@@ -33,8 +33,6 @@ const Auth = ({loginUser}) => {
     const handleSubmit= async (e) => {
         e.preventDefault();
         let token = await getToken(form)
-        console.log(form.username)
-        console.log(token)
         localStorage.setItem("username", JSON.stringify(form.username));
         localStorage.setItem("jwt", JSON.stringify(token));
         JoblyApi.token = token;

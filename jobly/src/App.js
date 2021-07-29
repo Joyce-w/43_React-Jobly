@@ -24,7 +24,7 @@ function App() {
 
   const [currUser, setCurrUser] = useState(localStorage.username || null);
   
-  const [userData, setUserData] = useState(JSON.parse(localStorage.user) || null);
+  const [userData, setUserData] = useState(localStorage.user || null);
   
   console.log(currUser, userData)
 
@@ -42,8 +42,8 @@ function App() {
       let user = await JoblyApi.getUserInfo(JSON.parse(localStorage.username))
       localStorage.setItem("user", JSON.stringify(user));
       // localStorage.setItem("username", JSON.stringify(localStorage.user));
-      setCurrUser(user)
-      setUserData(user)
+      setCurrUser(JSON.parse(user))
+      setUserData(JSON.parse(user))
     }
     getUserInfo();
   },[token, jobId])
