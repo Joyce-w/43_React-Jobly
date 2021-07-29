@@ -21,64 +21,42 @@ function App() {
 
   //job list
   const [jobId, setjobID] = useState(null);
-  
-  //pass function down to get login data from /login
-  // const loginUser = (login) => {
-  //   setLogin(login)
-  //   console.log(login)
-  // }
 
-    const [currUser, setCurrUser] = useState(localStorage.jwt || null);
- 
+  const [currUser, setCurrUser] = useState(localStorage.username || null);
+  
+  const [userData, setUserData] = useState(JSON.parse(localStorage.user) || null);
+  
+  console.log(currUser, userData)
 
   //get token from Auth.js
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(localStorage.jwt || null)
   const loginUser = async (jwt) => {
     setToken(await jwt);
-    }
-
+  }
+  
+  //get user information 
   useEffect(() => {
     const getUserInfo = async () => {
-      let currUser = JSON.parse(localStorage.username);
-
+      JoblyApi.token = token;
       //get user api
-      let user = await JoblyApi.getUserInfo(currUser)
+      let user = await JoblyApi.getUserInfo(JSON.parse(localStorage.username))
+      localStorage.setItem("user", JSON.stringify(user));
+      // localStorage.setItem("username", JSON.stringify(localStorage.user));
       setCurrUser(user)
+      setUserData(user)
     }
     getUserInfo();
   },[token, jobId])
-
-
-  // useEffect(() => {
-  //   const loginUser = async (formData) => {
-  //     try {
-  //       console.log(formData)
-  //       //api to login
-  //       let jwt = await JoblyApi.userLogin(formData)
-  //       //setlogin
-  //       JoblyApi.token = jwt;
-  //       localStorage.setItem("jwt", JSON.stringify(jwt))
-        
-        
-  //     } catch (e) {
-  //       console.log(e)
-  //     }
   
-  //   }
-  //   loginUser(login)
-  // }, [login])
   
-
-
   //get job id from Job component when job is applied
   const getjobID = (id) => {
     setjobID(id)
-    console.log(jobId)
   }
-  
 
+  
   return (
-    <UserContext.Provider value={currUser}>
+    <UserContext.Provider value={{userData, loginUser}}>
 
     <div className="App">
       <BrowserRouter>
@@ -102,7 +80,7 @@ function App() {
         </Route>
 
         <Route exact path="/profile">
-          <Profile currUser={ currUser }/>          
+          <Profile />          
         </Route>
         <Route exact path="/login">
           <Auth loginUser={loginUser}/>

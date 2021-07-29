@@ -6,8 +6,8 @@ import './Job.css'
 
 const Job = ({ getjobID }) => {
     
-    const currUser = useContext(UserContext)
-    const [jobList, setjobList] = useState(currUser.applications);
+    const { userData } = useContext(UserContext)
+    const [jobList, setjobList] = useState(userData.applications);
     
     const [job, setJob] = useState();
     const { id } = useParams();
@@ -29,10 +29,10 @@ const Job = ({ getjobID }) => {
     }, [id])
 
 
-    const appliedToJob = async (un, jobID) => {
+    const appliedToJob = async (username, jobID) => {
     try {
         //apply to job
-        await JoblyApi.appliedJob(un, jobID)
+        await JoblyApi.appliedJob(username, jobID)
         setjobList(jobList => ([...jobList, +id ]))
     } catch (e) {
         console.log(e)
@@ -44,7 +44,7 @@ const Job = ({ getjobID }) => {
     //send jobID to parent App.js
     const handleSubmit = (e) => {
         e.preventDefault();
-        appliedToJob(JSON.parse(localStorage.username),id)
+        appliedToJob(userData.username, +id)
         getjobID(id);
         history.push('/jobs');
 

@@ -51,11 +51,13 @@ class JoblyApi {
   /**Get user info if loggedin */
   static async getUserInfo(user) {
     let res = await this.request(`users/${user}/`);
+    console.log(res.user)
     return res.user
   }
 
   /**Apply user to job */
   static async appliedJob(username, id) {
+    console.log(username, id)
     let res = await this.request(`users/${username}/jobs/${id}`, {}, "post");
     console.log(res)
 

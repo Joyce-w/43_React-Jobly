@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import './Auth.css'
 import JoblyApi from '../api';
+import Job from '../JobComponents/Job';
 
 
 const Auth = ({loginUser}) => {
@@ -22,19 +23,21 @@ const Auth = ({loginUser}) => {
 
     //get data from api
     const getToken = async (data) => {
-        console.log(data)
         let res = await JoblyApi.userLogin(data)
-        JoblyApi.token = res;
         return res;
     }
 
     
     const history = useHistory();
     //handle submit
-    const handleSubmit= (e) => {
+    const handleSubmit= async (e) => {
         e.preventDefault();
-        let token = getToken(form)
-        localStorage.setItem("username", JSON.stringify(form.username))
+        let token = await getToken(form)
+        console.log(form.username)
+        console.log(token)
+        localStorage.setItem("username", JSON.stringify(form.username));
+        localStorage.setItem("jwt", JSON.stringify(token));
+        JoblyApi.token = token;
         loginUser(token);
         history.push('/')
     }
@@ -42,8 +45,12 @@ const Auth = ({loginUser}) => {
     return (
         <div className='Login-container'>
             {/* login */}
-            <form onSubmit={ handleSubmit} className='login'>
-                <h3>Login to start view job opportunities!</h3>
+            <form onSubmit={handleSubmit} className='login'>
+                <div className="Login-FormHeading">
+                    <h3>Login</h3>
+                    <p>Stay updated on your professional world</p>                    
+                </div>
+
                 <label>Username</label>
                 <input
                     placeholder='Username'

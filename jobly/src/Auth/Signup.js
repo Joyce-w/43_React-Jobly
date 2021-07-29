@@ -41,10 +41,15 @@ const Signup = () => {
             {/* signup */}
             <form onSubmit={ handleSubmit} className='signup'>
                 <h3>Make the most of your professional life.</h3>
-                <input onChange={handleChange} name="firstName" placeholder="First Name" type='text'></input>
-                <input onChange={handleChange} name="lastName" placeholder="Last Name"type='text'></input>
+                <label>Username</label>
                 <input onChange={handleChange} name="username" placeholder="Username" type='text'></input>
-                <input onChange={handleChange} name="email" placeholder="Email"type='email'></input>
+                <label>First Name</label>
+                <input onChange={handleChange} name="firstName" placeholder="First Name" type='text'></input>
+                <label>Last Name</label>
+                <input onChange={handleChange} name="lastName" placeholder="Last Name" type='text'></input>
+                <label>Email</label>
+                <input onChange={handleChange} name="email" placeholder="Email" type='email'></input>
+                <label>Password</label>
                 <input onChange={handleChange} name="password" placeholder="Password" type='password'></input>
                 <button className="Auth-button">Signup</button>
             </form>            

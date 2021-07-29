@@ -5,23 +5,23 @@ import UserContext from '../UserContext';
 
 const Home = () => {
 
-  const currUser = useContext(UserContext)
-
+  const { userData } = useContext(UserContext)
+  console.log(userData)
   return (
     <>
       
-        {!currUser ?
+        {!userData ?
         <div className="Home-div">
           <h1>Welcome to Jobly. The one stop for jobs and companies.</h1>  
           <Link to="/login">
-            <button className="Home-login">Apply</button>
+            <button className="Home-login">Login</button>
           </Link>
           <Link to="/register">
             <button className="Home-signup">Signup</button>
             </Link>          
         </div> :
           <div className="Home-div">
-            <h1>Welcome {currUser.username}</h1>
+            <h1>Welcome {userData.username}</h1>
             <Link to="/companies">
               <button className="Home-companies">Explore Companies</button>
             </Link>

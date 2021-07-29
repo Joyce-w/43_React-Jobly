@@ -9,6 +9,19 @@
     padding: 1rem;
     border-left: slateblue 5px double;
 } */
+.Login-FormHeading{
+    margin-left: 0.5em;
+}
+.Login-FormHeading h3{
+    width: fit-content;
+    margin-bottom: 0;
+}
+.Login-FormHeading p{
+    width: fit-content;
+    text-align: left;
+    font-size: small;
+    margin-top: 0;
+}
 
 .login{
     background-color: #fff;
@@ -17,18 +30,21 @@
     justify-content: center;
     width: 300px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid rgb(236, 236, 236);
     padding: 1em;
 }
 
 .login input {
- border: solid 1px black;
+ border: solid 1px rgba(65, 65, 65, 0.75);
  height:1.2em;
  background: none;
  outline: none;
  border-radius: 5px;
  padding: .5em;
  margin: 0.5em;
+}
+.login input:focus{
+    border: solid 2px rgb(22, 102, 197);
 }
 
 /* Maake label float up when input is focused. Ref :https://codepen.io/joyce-w/pen/JjNMNBK */

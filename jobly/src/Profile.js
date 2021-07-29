@@ -1,23 +1,29 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
+import {Redirect} from 'react-router-dom'
 import UserContext from './UserContext';
 
 const Profile = () => {
     
-    const currUser = useContext(UserContext)
-    console.log(currUser)
-
+    const {userData} = useContext(UserContext)
+    console.log(userData)
     
     return (
+        <>
+            {userData ?
+                <div>
+                    <h4> {userData.username}</h4>
+                    <p>first name : {userData.firstName}</p>
+                    <p>last name : {userData.lastName}</p>
+                    <p>password: {userData.password}</p>
+                    <p>email : {userData.email}</p>                    
+                </div> : <Redirect to="/"/>
 
-        <div>
-            <h4>It's your profile {currUser.username}!</h4>
-            <p>username {currUser.username}</p>
-            <p>first name : {currUser.firstName}</p>
-            <p>last name : {currUser.lastName}</p>
-            <p>password: {currUser.password}</p>
-            <p>email : {currUser.email}</p>
-            <p> Jobs Applied:{currUser.applications ?currUser.applications.map(j => <p>{ j}</p>) : "You haven't applied to any jobs yet"}</p>
-        </div>    
+                      
+        }               
+        </>
+         
+        
+
     )
 }
 
