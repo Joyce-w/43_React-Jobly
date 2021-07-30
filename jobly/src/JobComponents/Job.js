@@ -1,18 +1,19 @@
 import React, {useEffect, useState, useContext} from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, Redirect } from 'react-router-dom'
 import JoblyApi from '../api';
 import UserContext from '../UserContext';
 import './Job.css'
 
 const Job = ({ getjobID }) => {
     
+    //get token to make sure user is signed in
+    let isLoggedIn = (JSON.parse(localStorage.getItem('jwt')))
+    
     const { userData } = useContext(UserContext)
-    const [jobList, setjobList] = useState(userData.applications);
+    const [jobList, setjobList] = useState(userData || null);
     
     const [job, setJob] = useState();
     const { id } = useParams();
-    console.log(id, jobList)
-    
     //load job data according to id
     useEffect(() => {
         const getJob = async () => {
@@ -51,17 +52,21 @@ const Job = ({ getjobID }) => {
     }
 
     return (
-        //load job from api
+        // load job from api
         <div className="Job-div">
-            {!job ? <p>loading</p> : 
-            <div>
-                    <h4>{job.title}</h4>
-                    
-                <p>Salary: {job.salary || 'Contact to inquire'}</p>
-                <p>Equity: {job.equity || 'None'}</p>
-                    <button onClick={ handleSubmit }>Apply</button>
-            </div>        
-            }            
+            {!isLoggedIn ? <Redirect to="/" /> :
+                <>
+                    {!job ? <p>loading</p> : 
+                    <div>
+                        <h4>{job.title}</h4>
+                        <p>Salary: {job.salary || 'Contact to inquire'}</p>
+                        <p>Equity: {job.equity || 'None'}</p>
+                            <button onClick={ handleSubmit }>Apply</button>
+                    </div>        
+                    }                     
+                </>
+            }
+       
         </div>
 
 

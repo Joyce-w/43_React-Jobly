@@ -6,11 +6,8 @@ import UserContext from '../UserContext';
 const Home = () => {
 
   let { userData } = useContext(UserContext)
-  console.log(userData)
 
-  //if there is a userData, parse from localstorage
-  // let user = userData ? JSON.parse(userData) : userData;
-  // console.log(user)
+
   return (
     <>
       

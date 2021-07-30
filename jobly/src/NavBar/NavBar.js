@@ -15,9 +15,9 @@ const NavBar = ({handleSignout}) => {
                 {!isLoggedIn ?<Link to="/">Home</Link> :
                     <>
                         <NavLink to="/companies">Companies</NavLink>
-                <NavLink to="/jobs">Jobs</NavLink>
-                    <NavLink to="/profile">Profile</NavLink>
-                    <Link onClick={handleSignout} to="/">Signout</Link>
+                        <NavLink to="/jobs">Jobs</NavLink>
+                        <NavLink to="/profile">Profile</NavLink>
+                        <Link onClick={handleSignout} to="/">Signout</Link>
                     </> 
             }
 
