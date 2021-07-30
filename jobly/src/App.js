@@ -13,7 +13,6 @@ import NavBar from './NavBar/NavBar';
 import Home from './Home/Home'
 import JoblyApi from './api';
 import UserContext from './UserContext';
-import { decodeToken } from 'react-jwt'
 
 function App() {
 
@@ -32,7 +31,12 @@ function App() {
   const [token, setToken] = useState(JSON.parse(localStorage.getItem('jwt')) || null)
 
 
-
+    const handleSignout = () => {
+      localStorage.clear();
+      setUserData(null)
+    }
+  
+  //saves jwt to state
   const loginUser = async (jwt, formUser) => {
     setToken(await jwt);
     //get username with token
@@ -72,7 +76,7 @@ function App() {
 
     <div className="App">
       <BrowserRouter>
-        <NavBar/>
+          <NavBar handleSignout={ handleSignout }/>
         <Route exact path="/">
           <Home/>          
         </Route>
