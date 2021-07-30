@@ -6,16 +6,16 @@ const Profile = () => {
     
     const {userData} = useContext(UserContext)
     console.log(userData)
-    let user = userData ? JSON.parse(userData) : userData;
+    
     return (
         <>
-            {user ?
+            {userData ?
                 <div>
-                    <h4> {user.username}</h4>
-                    <p>first name : {user.firstName}</p>
-                    <p>last name : {user.lastName}</p>
-                    <p>email : {user.email}</p>
-                    <h5>Jobs Applied: { user.applications.length }!</h5>
+                    <h4> {userData.username}</h4>
+                    <p>first name : {userData.firstName}</p>
+                    <p>last name : {userData.lastName}</p>
+                    <p>email : {userData.email}</p>
+                    <h5>Jobs Applied: { userData.applications.length }!</h5>
 
                 </div> : <Redirect to="/"/>
 

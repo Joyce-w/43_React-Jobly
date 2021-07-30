@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import Companies from './CompanyComponents/Companies';
 import Company from './CompanyComponents/Company'
 import Jobs from './JobComponents/Jobs';
@@ -13,6 +13,7 @@ import NavBar from './NavBar/NavBar';
 import Home from './Home/Home'
 import JoblyApi from './api';
 import UserContext from './UserContext';
+import { decodeToken } from 'react-jwt'
 
 function App() {
 
@@ -22,31 +23,42 @@ function App() {
   //job list
   const [jobId, setjobID] = useState(null);
 
-  const [currUser, setCurrUser] = useState(localStorage.username || null);
+  const [currUsername, setCurrUsername] = useState(null);
   
   const [userData, setUserData] = useState(localStorage.user || null);
   
-  console.log(currUser, userData)
 
   //get token from Auth.js
-  const [token, setToken] = useState(localStorage.jwt || null)
-  const loginUser = async (jwt) => {
+  const [token, setToken] = useState(JSON.parse(localStorage.getItem('jwt')) || null)
+
+
+
+  const loginUser = async (jwt, formUser) => {
     setToken(await jwt);
+    //get username with token
+    localStorage.setItem("jwt", JSON.stringify(jwt));
+    setCurrUsername(() => formUser)
+
   }
-  
+
   //get user information 
   useEffect(() => {
     const getUserInfo = async () => {
-      JoblyApi.token = token;
+      console.log(currUsername)
+      
+      JoblyApi.token = token ? JoblyApi.token: <Redirect to="/home"/>;
+      console.log(JoblyApi.token)
       //get user api
-      let user = await JoblyApi.getUserInfo(JSON.parse(localStorage.username))
-      localStorage.setItem("user", JSON.stringify(user));
+      // let decodedToken = decodeToken(JoblyApi.token)
+      // setCurrUsername(decodedToken)
+      let user = await JoblyApi.getUserInfo(currUsername)
+      console.log(user)
       // localStorage.setItem("username", JSON.stringify(localStorage.user));
-      setCurrUser(JSON.parse(user))
-      setUserData(JSON.parse(user))
+      // setCurrUser(JSON.parse(user))
+      setUserData(user)
     }
     getUserInfo();
-  },[token, jobId])
+  },[token, jobId, currUsername])
   
   
   //get job id from Job component when job is applied

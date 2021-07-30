@@ -33,10 +33,11 @@ const Auth = ({loginUser}) => {
     const handleSubmit= async (e) => {
         e.preventDefault();
         let token = await getToken(form)
-        localStorage.setItem("username", JSON.stringify(form.username));
+        // localStorage.setItem("username", JSON.stringify(form.username));
         localStorage.setItem("jwt", JSON.stringify(token));
+        console.log(form.username)
         JoblyApi.token = token;
-        loginUser(token);
+        loginUser(token,form.username);
         history.push('/')
     }
 
