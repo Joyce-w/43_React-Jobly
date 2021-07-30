@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Company.css'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Redirect } from 'react-router-dom';
 import JoblyApi from '../api'
 
 const Companies = () => {
+    //get token to make sure user is signed in
+    let isLoggedIn = (JSON.parse(localStorage.getItem('jwt')))
+    console.log(isLoggedIn)
 
     const { handle } = useParams();
     
@@ -46,28 +49,33 @@ const Companies = () => {
     
     return (
         <>
-        <div className="Company-jobs-cards">
-        {/* Load data */}
-        {!coJobs ? <p>Loading data</p> :
-            <div className="Company-div">
-                {companyData}
-                        <hr></hr>
-                        
-                        <h4>Recently posted jobs</h4>
-                        
-                <div className="Company-jobs">
-                    {coJobs.map(j => {
-                        return <Link to={`/jobs/${j.id}`}>                    
-                                    <div className="Company-job">
-                                        <h4>{j.title}</h4>
-                                    </div>
-                                </Link>
-                    })}                                 
-                </div>
-           
-            </div>
-        } 
-        </div>
+        {!isLoggedIn ? <Redirect to="/"/> :
+            <>
+                <div className="Company-jobs-cards">
+                {/* Load data */}
+                {!coJobs ? <p>Loading data</p> :
+                    <div className="Company-div">
+                        {companyData}
+                                <hr></hr>
+                                
+                                <h4>Recently posted jobs</h4>
+                                
+                        <div className="Company-jobs">
+                            {coJobs.map(j => {
+                                return <Link to={`/jobs/${j.id}`}>                    
+                                            <div className="Company-job">
+                                                <h4>{j.title}</h4>
+                                            </div>
+                                        </Link>
+                            })}                                 
+                        </div>
+                
+                    </div>
+                } 
+                </div>                    
+            </>
+        
+        }
         </>
     )
 }

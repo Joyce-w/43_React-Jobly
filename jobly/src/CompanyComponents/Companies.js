@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './Companies.css'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import JoblyApi from '../api';
 
 
 const Companies = () => {
-
+    //get token to make sure user is signed in
+    let isLoggedIn = (JSON.parse(localStorage.getItem('jwt')))
+    
     const [companies, setCompanies] = useState();
 
     useEffect(() => {
@@ -26,7 +28,9 @@ const Companies = () => {
 
     return (
         <>
-            
+            {/* If there is no token, redirect to home */}
+            {!isLoggedIn ? <Redirect to="/"/> :
+            <> 
             {/* loading */}<h2>Companies!</h2>
             {!companies ? <p>Loading</p> :
                 <div className="Companies-cards">
@@ -45,7 +49,10 @@ const Companies = () => {
 
    
                 </div>
+            }            
+            </>
             }
+
         </>
     )
 }
