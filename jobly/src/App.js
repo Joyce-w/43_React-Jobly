@@ -39,19 +39,17 @@ function App() {
   //saves jwt to state
   const loginUser = async (jwt, formUser) => {
     setToken(await jwt);
-    //get username with token
+    //store token into localstorage
     localStorage.setItem("jwt", JSON.stringify(jwt));
+    setToken(jwt)
     setCurrUsername(() => formUser)
-
   }
 
   //get user information 
   useEffect(() => {
     const getUserInfo = async () => {
       console.log(currUsername)
-      
-      JoblyApi.token = token ? JoblyApi.token: <Redirect to="/home"/>;
-      console.log(JoblyApi.token)
+
       //get user api
       // let decodedToken = decodeToken(JoblyApi.token)
       // setCurrUsername(decodedToken)
@@ -62,7 +60,7 @@ function App() {
       setUserData(user)
     }
     getUserInfo();
-  },[token, jobId, currUsername])
+  },[token,currUsername])
   
   
   //get job id from Job component when job is applied
@@ -72,7 +70,7 @@ function App() {
 
   
   return (
-    <UserContext.Provider value={{userData, loginUser}}>
+    <UserContext.Provider value={{userData, loginUser, token}}>
 
     <div className="App">
       <BrowserRouter>
